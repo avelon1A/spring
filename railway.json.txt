@@ -1,0 +1,9 @@
+{
+  "build": {
+    "command": "mvn clean package",
+    "output": "target/spring.jar"
+  },
+  "start": {
+    "command": "java -jar target/spring.jar"
+  }
+}
