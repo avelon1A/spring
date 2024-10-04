@@ -1,21 +1,24 @@
 package com.example.crud.spring.controller;
 
-
+import com.example.crud.spring.dto.StudentDto;
+import com.example.crud.spring.util.parser.StudentParser;
+import com.example.crud.spring.dto.StudentReturnDto;
 import com.example.crud.spring.entity.Student;
 import com.example.crud.spring.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 public class HomeController {
 
-    private StudentService studentService;
+    private final StudentService studentService;
+    private final StudentParser studentParser;
 
     @Autowired
-    public void setStudentService(StudentService studentService) {
+    public HomeController(StudentService studentService, StudentParser studentParser) {
         this.studentService = studentService;
+        this.studentParser = studentParser;
     }
 
     @GetMapping("/")
@@ -24,10 +27,12 @@ public class HomeController {
     }
 
     @PostMapping("/saveStudent")
-    public Student saveData(@RequestBody Student student) {
-        studentService.saveStudent(student);
-        return student;
+    public StudentReturnDto saveStudent(@RequestBody StudentDto studentDto) {
+        Student student = studentParser.parseToEntity(studentDto);
+        Student savedStudent = studentService.saveStudent(student);
+        return studentParser.parseToReturnDto(savedStudent);
     }
+
     @GetMapping("/getAllStudents")
     public List<Student> getAllStudents() {
         return studentService.getAllStudents();
@@ -46,5 +51,12 @@ public class HomeController {
     public Student getStudent(@PathVariable Long rollNo) {
         return studentService.getStudent(rollNo);
     }
+    @GetMapping("/getStudentByName")
+      public List<Student> getStudentByName(@RequestParam  String name) {
+        return studentService.findStudentsByName(name);
+    }
+
 
 }
+
+

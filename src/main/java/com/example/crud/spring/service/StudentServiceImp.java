@@ -20,8 +20,9 @@ public class StudentServiceImp implements StudentService{
 
 
     @Override
-    public void saveStudent(Student student) {
-    studentDao.saveStudent(student);
+    public Student saveStudent(Student student) {
+   return studentDao.saveStudent(student);
+
     }
 
     @Override
@@ -51,6 +52,11 @@ public class StudentServiceImp implements StudentService{
     @Override
     public Student getStudent(Long rollNo) {
         return  studentDao.getStudent(rollNo);
+    }
+
+    @Override
+    public List<Student> findStudentsByName(String name) {
+        return studentDao.findStudentsByName(name);
     }
 
 

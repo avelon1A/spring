@@ -20,8 +20,9 @@ public class StudentDaoImp implements  StudentDao{
     }
 
     @Override
-    public void saveStudent(Student student) {
-        studentRepository.save(student);
+    public Student saveStudent(Student student) {
+        return studentRepository.save(student);
+
     }
 
     @Override
@@ -48,4 +49,10 @@ public class StudentDaoImp implements  StudentDao{
     public Student getStudent(Long rollNo) {
         return studentRepository.findById(rollNo).get();
     }
+
+    @Override
+    public List<Student> findStudentsByName(String name) {
+        return studentRepository.findByNameContainingIgnoreCase(name);
+    }
+
 }

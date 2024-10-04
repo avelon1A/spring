@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface StudentService {
 
-    void  saveStudent(Student student);
+    Student saveStudent(Student student);
 
     List<Student> getAllStudents();
 
@@ -15,5 +15,7 @@ public interface StudentService {
     void deleteStudent(Long rollNo);
 
     Student getStudent(Long rollNo);
+
+     List<Student> findStudentsByName(String name) ;
 
 }

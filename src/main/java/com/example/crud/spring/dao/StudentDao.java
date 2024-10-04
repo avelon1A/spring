@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface StudentDao {
 
-    void  saveStudent(Student student);
+    Student saveStudent(Student student);
 
     List<Student> getAllStudents();
 
@@ -17,5 +17,9 @@ public interface StudentDao {
     boolean checkStudentExist(Long rollNo);
 
     Student getStudent(Long rollNo);
+
+    List<Student> findStudentsByName(String name);
+
+
 
 }
