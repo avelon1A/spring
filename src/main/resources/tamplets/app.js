@@ -1,13 +1,20 @@
 let ws, currentUser;
 
 function connect() {
-
   ws = new WebSocket("ws://localhost:8080/hello");
 
   ws.onmessage = function (e) {
     console.log(e);
     printMessage(e.data);
   };
+
+  ws.onclose = function () {
+    alert("Disconnected from the server.");
+    document.getElementById("connectButton").disabled = false;
+    document.getElementById("connectButton").value = "Connect";
+    document.getElementById("name").disabled = false;
+  };
+
   document.getElementById("connectButton").disabled = true;
   document.getElementById("connectButton").value = "Connected";
   document.getElementById("name").disabled = true;
@@ -15,7 +22,6 @@ function connect() {
   console.log(currentUser);
 }
 
-//This function takes care of printing the message on browser
 function printMessage(data) {
   let messages = document.getElementById("messages");
   let messageData = JSON.parse(data);
@@ -23,14 +29,18 @@ function printMessage(data) {
   newMessage.className = "incoming-message";
   newMessage.innerHTML = messageData.name + " : " + messageData.message;
   messages.appendChild(newMessage);
+  messages.scrollTop = messages.scrollHeight; // Scroll to the bottom
 }
 
-//This function handles functionality of sending the message to websocket
 function sendToGroupChat() {
   if (ws == undefined) return;
-  let messageText = document.getElementById("message").value;
+
+  let messageText = document.getElementById("message").value.trim();
+  if (!messageText) return; // Prevent sending empty messages
+
   document.getElementById("message").value = "";
-  let name = document.getElementById("name").value;
+  let name = currentUser; // Use the current user's name
+
   let messageObject = {
     name: name,
     message: messageText,
@@ -39,8 +49,7 @@ function sendToGroupChat() {
   let newMessage = document.createElement("div");
   newMessage.innerHTML = messageText + " : " + currentUser;
   newMessage.className = "outgoing-message";
-  messages.appendChild(newMessage);
+  document.getElementById("messages").appendChild(newMessage);
 
-  //In-Built functions Send is used with object we created
   ws.send(JSON.stringify(messageObject));
 }

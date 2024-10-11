@@ -1,14 +1,15 @@
-package com.example.crud.spring.service;
+package com.example.crud.spring.service.imp;
 
 import com.example.crud.spring.dao.StudentDao;
 import com.example.crud.spring.entity.Student;
+import com.example.crud.spring.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class StudentServiceImp implements StudentService{
+public class StudentServiceImp implements StudentService {
 
     private StudentDao studentDao;
 

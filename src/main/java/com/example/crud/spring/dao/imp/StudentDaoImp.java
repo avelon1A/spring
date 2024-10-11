@@ -1,5 +1,6 @@
-package com.example.crud.spring.dao;
+package com.example.crud.spring.dao.imp;
 
+import com.example.crud.spring.dao.StudentDao;
 import com.example.crud.spring.entity.Student;
 import com.example.crud.spring.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import java.util.List;
 
 
 @Repository
-public class StudentDaoImp implements  StudentDao{
+public class StudentDaoImp implements StudentDao {
 
     private StudentRepository studentRepository;
 
