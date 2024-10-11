@@ -4,8 +4,8 @@ package com.example.crud.spring.dao.imp;
 import com.example.crud.spring.dao.WebSocketMessageDao;
 import com.example.crud.spring.entity.WebSocketMessageEntity;
 import com.example.crud.spring.repository.WebSocketMessageRepository;
-import org.springframework.stereotype.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
