@@ -1,6 +1,7 @@
-package com.example.crud.spring.service;
+package com.example.crud.spring.controller;
 
 import com.example.crud.spring.entity.WebSocketMessageEntity;
+import com.example.crud.spring.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;

@@ -1,7 +1,6 @@
 package com.example.crud.spring.controller;
 
 import com.example.crud.spring.service.MessageService;
-import com.example.crud.spring.service.SocketConnectionHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
